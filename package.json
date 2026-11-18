@@ -1,0 +1,29 @@
+{
+  "name": "github-page-jianli",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "交互式简历：工单智能体与智能风险预警平台的最小化 Demo",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "gen:pdf": "node scripts/generate-pdf.mjs"
+  },
+  "dependencies": {
+    "markdown-it": "^15.0.3",
+    "pdfjs-dist": "^6.5.438",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@types/markdown-it": "^14.2.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.3.0",
+    "pdf-lib": "^1.17.1",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.8"
+  }
+}
