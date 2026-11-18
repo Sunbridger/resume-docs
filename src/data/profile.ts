@@ -1,13 +1,80 @@
 export const PROFILE = {
-  // 占位信息：替换这里即可更新站点
-  name: "你的名字",
+  name: "Sunbridger",
   role: "AI 应用工程师",
   tagline: "把 Agent 与 RAG 从方案落成可用的产品。",
   intro:
-    "专注 Agent 工作流编排、检索增强生成与 AI 产品前端。把复杂的业务流程拆解成可执行的节点与工具，再把它交到真实用户手里。",
-  skills: ["Agent 编排", "RAG 检索", "LangGraph", "FastAPI", "React", "前端性能"],
+    "既写 Agent 执行引擎与 RAG 检索链路，也把 AI 结果做成可用的前端交互。擅长把复杂的业务流程拆解成可执行的节点与工具，再交到真实用户手里。",
+  skills: [
+    "Agent 执行引擎",
+    "RAG 检索",
+    "LangGraph",
+    "TypeScript / React",
+    "Python / FastAPI",
+    "性能优化",
+  ],
   location: "中国 · 远程 / 现场",
+  github: "https://github.com/Sunbridger",
 };
+
+export interface SkillGroup {
+  tag: string;
+  title: string;
+  points: string[];
+}
+
+export const SKILL_GROUPS: SkillGroup[] = [
+  {
+    tag: "FRONTEND",
+    title: "前端与交互",
+    points: [
+      "精通 TypeScript / React，落地 SSE 流式渲染、海量数据虚拟滚动、WebWorker 主线程解压等性能优化。",
+      "有 Chrome 插件、CLI 工具、微信小程序等多端开发者工具从 0 到 1 的实战经验。",
+    ],
+  },
+  {
+    tag: "AGENT BACKEND",
+    title: "Agent 后端工程",
+    points: [
+      "熟练使用 Python / FastAPI，独立设计并落地 Agent 服务后端。",
+      "核心覆盖任务状态机、上下文缓存与记忆持久化。",
+      "Redis 缓存与分布式锁、MySQL 状态持久化、Qdrant 向量记忆检索、Celery + MQ 异步任务编排。",
+    ],
+  },
+  {
+    tag: "ENGINE",
+    title: "Agent 执行引擎",
+    points: [
+      "深入理解原生 Function Calling 与 Agent 主循环实现。",
+      "按任务特征选型：短链、探索性任务用 ReAct；长链路、多步骤任务用 Plan-and-Execute + 动态 Replan。",
+      "质量敏感场景叠加 Reflection。",
+    ],
+  },
+  {
+    tag: "RAG",
+    title: "RAG 全链路",
+    points: [
+      "具备数据清洗、切片、向量模型接入、持久化到混合检索 + Rerank 重排的完整落地能力。",
+      "熟悉 Recall、MRR、重排增益等评测口径，能定位检索链路瓶颈，保障结果准确与可溯源。",
+    ],
+  },
+  {
+    tag: "ECOSYSTEM",
+    title: "Agent 生态",
+    points: [
+      "LangGraph 有状态图编排：条件分支、状态流转与 Checkpointer。",
+      "基于 Langfuse / CozeLoop 落地 Trace 埋点、Prompt 版本管理与评测回归。",
+      "熟悉 Dify Chatflow / Agent / 知识库的适用边界，兼顾自研框架与低代码平台选型。",
+    ],
+  },
+  {
+    tag: "LEADERSHIP",
+    title: "团队管理",
+    points: [
+      "具备 5–7 人团队管理经验。",
+      "主导需求拆解、迭代排期、Code Review 规范建立与新人培养，推动研发效能提升。",
+    ],
+  },
+];
 
 export interface ProjectHighlight {
   title: string;
