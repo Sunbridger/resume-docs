@@ -575,7 +575,7 @@ button {
 .skills {
   max-width: 1180px;
   margin: 0 auto;
-  padding: 76px 24px 12px;
+  padding: 10px 24px 12px;
 }
 
 .skills__head {
@@ -834,7 +834,7 @@ button {
   }
 
   .skills {
-    padding: 52px 18px 8px;
+    padding: 6px 18px 8px;
   }
 
   .skills__grid {

@@ -13,9 +13,9 @@ export default function App() {
       <SiteNav />
       <main>
         <Hero />
+        <SkillsSection />
         <ProjectSection project={PROJECTS.ticket} demo={<TicketDemo />} />
         <ProjectSection project={PROJECTS.risk} demo={<RiskDemo />} />
-        <SkillsSection />
       </main>
       <Footer />
     </div>
