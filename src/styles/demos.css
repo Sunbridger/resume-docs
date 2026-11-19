@@ -25,26 +25,6 @@
   min-width: 0;
 }
 
-.demo-bar__lights {
-  display: inline-flex;
-  gap: 5px;
-}
-
-.demo-bar__lights i {
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  background: #d8cdb8;
-}
-
-.demo-bar__lights i:nth-child(1) {
-  background: #c9b89a;
-}
-
-.demo-bar__lights i:nth-child(2) {
-  background: #b9c9b5;
-}
-
 .demo-bar__title {
   font-family: var(--serif);
   font-size: 13.5px;
@@ -1014,12 +994,13 @@
 
 .composer {
   display: flex;
-  align-items: flex-end;
-  gap: 8px;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 3px;
   border: 1px solid var(--line-strong);
   border-radius: 12px;
   background: #fff;
-  padding: 5px 5px 5px 10px;
+  padding: 6px 7px 7px;
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
@@ -1030,6 +1011,28 @@
 
 .composer--busy {
   background: var(--surface-soft);
+}
+
+.composer__tools {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  padding-left: 1px;
+  color: var(--muted);
+}
+
+.composer__tool {
+  width: 22px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  border-radius: 5px;
+}
+
+.composer__row {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
 }
 
 .composer textarea {
@@ -1043,13 +1046,13 @@
   font-family: inherit;
   font-size: 12.5px;
   line-height: 1.55;
-  padding: 5px 0;
+  padding: 4px 2px;
   color: var(--ink);
 }
 
 .composer__send {
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   border: 0;
   border-radius: 8px;
   background: var(--green-700);
@@ -2210,6 +2213,634 @@
 }
 
 /* ============================================================
+   风险预警平台 · Chrome 浏览器外壳
+   ============================================================ */
+
+.demo--risk {
+  background: #fff;
+  font-family: var(--sans);
+}
+
+.chrome-tabbar {
+  display: flex;
+  align-items: flex-end;
+  height: 40px;
+  padding: 0 8px;
+  background: #dee1e6;
+}
+
+.chrome-lights {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: none;
+  height: 100%;
+  padding: 0 12px 0 2px;
+}
+
+.chrome-lights i {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+}
+
+.chrome-lights i:nth-child(1) {
+  background: #ff5f57;
+}
+
+.chrome-lights i:nth-child(2) {
+  background: #febc2e;
+}
+
+.chrome-lights i:nth-child(3) {
+  background: #28c840;
+}
+
+.chrome-tabs {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+}
+
+.chrome-tab {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+  max-width: 240px;
+  height: 32px;
+  padding: 0 10px;
+  border-radius: 8px 8px 0 0;
+  color: #4b5563;
+  font-size: 11.5px;
+}
+
+.chrome-tab--active {
+  background: #fff;
+  color: #1f2329;
+}
+
+.chrome-favicon {
+  width: 14px;
+  height: 14px;
+  flex: none;
+  border-radius: 3px;
+  display: grid;
+  place-items: center;
+}
+
+.chrome-favicon--risk {
+  background: linear-gradient(135deg, #2e8b6b, #1b5a43);
+}
+
+.chrome-favicon--risk::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-bottom: 5px solid #fff;
+}
+
+.chrome-favicon--new {
+  border-radius: 999px;
+  background: #e8eaed;
+  color: #5f6368;
+  font-size: 10px;
+  line-height: 1;
+}
+
+.chrome-tab__title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chrome-tab__close {
+  width: 15px;
+  height: 15px;
+  flex: none;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  color: #9aa0a6;
+}
+
+.chrome-newtab {
+  width: 26px;
+  height: 26px;
+  flex: none;
+  margin: 0 4px 3px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  color: #5f6368;
+  font-size: 14px;
+}
+
+.chrome-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 44px;
+  padding: 0 10px 5px;
+  background: #fff;
+  border-bottom: 1px solid #dadce0;
+}
+
+.chrome-nav {
+  display: flex;
+  gap: 2px;
+  flex: none;
+  color: #5f6368;
+}
+
+.chrome-nav span {
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+}
+
+.chrome-omnibox {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  height: 29px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: #f1f3f4;
+  color: #5f6368;
+}
+
+.chrome-url {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 11.5px;
+  color: #202124;
+}
+
+.chrome-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: none;
+  color: #5f6368;
+}
+
+.chrome-profile {
+  width: 21px;
+  height: 21px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #2e8b6b, #1b5a43);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.demo-bar--risk {
+  background: #fff;
+  border-bottom: 1px solid #e8ebef;
+  padding: 8px 14px;
+}
+
+/* ============================================================
+   工单智能体 · 钉钉机器人外壳
+   ============================================================ */
+
+.demo--dingtalk {
+  --dt-blue: #0089ff;
+  --dt-blue-deep: #0070d9;
+  --dt-bg: #f2f3f5;
+  --dt-line: #e6e8eb;
+  --dt-ink: #1f2329;
+  --dt-muted: #8f959e;
+  background: #fff;
+  font-family: var(--sans);
+}
+
+/* ---------- 钉钉标题栏 ---------- */
+
+.dt-chrome {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  height: 38px;
+  padding: 0 12px;
+  background: #f7f8fa;
+  border-bottom: 1px solid var(--dt-line);
+}
+
+.dt-chrome__left,
+.dt-chrome__right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.dt-chrome__right {
+  gap: 12px;
+}
+
+.dingtalk-logo {
+  width: 22px;
+  height: 22px;
+  flex: none;
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #33a6ff, var(--dt-blue));
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.dt-chrome__app {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--dt-ink);
+}
+
+.dt-chrome__sep {
+  width: 1px;
+  height: 13px;
+  background: #e0e3e7;
+}
+
+.dt-chrome__title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 11.5px;
+  color: var(--dt-muted);
+}
+
+.dt-chrome__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  color: var(--dt-muted);
+  white-space: nowrap;
+}
+
+.dt-chrome__status i {
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: #22c55e;
+}
+
+.dt-win {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+}
+
+.dt-win b {
+  width: 26px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  font-size: 10px;
+  font-weight: 400;
+  color: #8f959e;
+}
+
+/* ---------- 侧边导航 + 主体 ---------- */
+
+.dt-shell {
+  display: flex;
+  min-width: 0;
+}
+
+.dt-rail {
+  width: 56px;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 12px 0;
+  background: #f2f3f5;
+  border-right: 1px solid var(--dt-line);
+}
+
+.dt-rail__avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #33a6ff, var(--dt-blue));
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.dt-rail__divider {
+  width: 24px;
+  height: 1px;
+  background: #e2e5e9;
+  margin: 3px 0 5px;
+}
+
+.dt-rail__icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  color: #7d848d;
+}
+
+.dt-rail__icon--active {
+  color: var(--dt-blue);
+  background: #e5f1ff;
+}
+
+.dt-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.dingtalk-chat-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: none;
+  padding: 10px 16px;
+  background: #fff;
+  border-bottom: 1px solid var(--dt-line);
+}
+
+.dingtalk-chat-head__body {
+  min-width: 0;
+}
+
+.dingtalk-chat-head__actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: none;
+}
+
+.dingtalk-chat-head__actions .segmented {
+  background: #f2f3f5;
+}
+
+.dingtalk-chat-head__actions .segmented__btn {
+  padding: 4px 11px;
+}
+
+.dingtalk-chat-head__actions .segmented__btn--active {
+  background: #fff;
+  color: var(--dt-blue-deep);
+  box-shadow: 0 1px 2px rgba(31, 35, 41, 0.1);
+}
+
+.dt-round-btn {
+  width: 26px;
+  height: 26px;
+  border: 1px solid #e3e6ea;
+  border-radius: 7px;
+  background: #fff;
+  color: #6b7280;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+.dt-round-btn:hover {
+  color: var(--dt-blue);
+  border-color: #b7dbff;
+  background: #f5faff;
+}
+
+.dingtalk-avatar {
+  width: 30px;
+  height: 30px;
+  flex: none;
+  border-radius: 9px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, var(--dt-blue), var(--dt-blue-deep));
+  color: #fff;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  box-shadow: 0 4px 10px -6px rgba(11, 111, 232, 0.7);
+}
+
+.dingtalk-chat-head__name {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--dt-ink);
+}
+
+.dingtalk-chat-head__badge {
+  padding: 1px 6px;
+  border: 1px solid #d6e6ff;
+  border-radius: 999px;
+  background: #eef5ff;
+  font-size: 8.5px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--dt-blue-deep);
+}
+
+.dingtalk-chat-head__meta {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 2px 0 0;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.02em;
+  color: var(--dt-muted);
+}
+
+.dingtalk-online-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: #22c55e;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.12);
+}
+
+.demo--dingtalk .chat {
+  background: var(--dt-bg);
+  border-right-color: var(--dt-line);
+}
+
+.demo--dingtalk .chat__list {
+  padding-top: 16px;
+  background: var(--dt-bg);
+}
+
+.demo--dingtalk .avatar--ai {
+  border-radius: 9px;
+  background: linear-gradient(135deg, var(--dt-blue), var(--dt-blue-deep));
+}
+
+.demo--dingtalk .avatar--user {
+  border-radius: 9px;
+  background: #e8ebf0;
+  color: #5c6673;
+}
+
+.demo--dingtalk .bubble--assistant {
+  background: #fff;
+  border-color: var(--dt-line);
+  border-top-left-radius: 6px;
+  box-shadow: 0 1px 2px rgba(31, 35, 41, 0.04);
+}
+
+.demo--dingtalk .bubble--user {
+  background: var(--dt-blue);
+  color: #fff;
+  border-bottom-right-radius: 6px;
+}
+
+.demo--dingtalk .bubble--warn {
+  background: #fff7e8;
+  border-color: #f3dfbb;
+  color: #7a5418;
+}
+
+.demo--dingtalk .typing {
+  background: #fff;
+  border-color: var(--dt-line);
+}
+
+.demo--dingtalk .typing span {
+  background: var(--dt-blue);
+}
+
+.demo--dingtalk .answer-card {
+  border-color: var(--dt-line);
+}
+
+.demo--dingtalk .answer-card__head {
+  background: #f3f8ff;
+  border-bottom-color: var(--dt-line);
+}
+
+.demo--dingtalk .answer-card__badge {
+  background: #fff;
+  border-color: #cfe0ff;
+  color: var(--dt-blue-deep);
+}
+
+.demo--dingtalk .chat-empty__badge {
+  background: #eef5ff;
+  border-color: #d6e6ff;
+  color: var(--dt-blue-deep);
+}
+
+.demo--dingtalk .chat-empty__title {
+  color: var(--dt-ink);
+}
+
+.demo--dingtalk .chat-empty__items li::before {
+  color: var(--dt-blue);
+}
+
+.demo--dingtalk .chat__composer {
+  background: #fff;
+  border-top-color: var(--dt-line);
+}
+
+.demo--dingtalk .examples::-webkit-scrollbar-thumb {
+  background: #dfe3e8;
+  border-radius: 999px;
+}
+
+.demo--dingtalk .example-chip {
+  background: #fff;
+  border-color: #e0e5ea;
+  color: #5c6673;
+}
+
+.demo--dingtalk .example-chip:hover:not(:disabled) {
+  background: #f3f8ff;
+  border-color: var(--dt-blue);
+  color: var(--dt-blue-deep);
+}
+
+.demo--dingtalk .composer {
+  border-color: #dfe3e8;
+  border-radius: 10px;
+}
+
+.demo--dingtalk .composer:focus-within {
+  border-color: var(--dt-blue);
+  box-shadow: 0 0 0 3px rgba(11, 111, 232, 0.1);
+}
+
+.demo--dingtalk .composer {
+  background: #fff;
+}
+
+.demo--dingtalk .composer__tools {
+  color: #9aa1aa;
+}
+
+.demo--dingtalk .composer__send {
+  border-radius: 8px;
+  background: var(--dt-blue);
+}
+
+.demo--dingtalk .composer__send:hover:not(:disabled) {
+  background: var(--dt-blue-deep);
+}
+
+.demo--dingtalk .composer__tip {
+  color: var(--dt-muted);
+}
+
+.demo--dingtalk .trace-panel {
+  background: #fafbfc;
+}
+
+.demo--dingtalk .trace-panel__head {
+  background: #fff;
+  border-bottom-color: var(--dt-line);
+}
+
+.demo--dingtalk .trace-panel__title {
+  color: var(--dt-ink);
+}
+
+.demo--dingtalk .trace-step:hover {
+  background: rgba(11, 111, 232, 0.045);
+}
+
+/* ============================================================
    响应式
    ============================================================ */
 
@@ -2273,6 +2904,57 @@
   }
 
   .demo-bar {
+    padding: 9px 12px;
+  }
+
+  .dt-chrome {
+    height: 34px;
+    padding: 0 10px;
+  }
+
+  .dt-chrome__sep,
+  .dt-chrome__title,
+  .dt-chrome__status {
+    display: none;
+  }
+
+  .dt-win {
+    display: none;
+  }
+
+  .dt-rail {
+    display: none;
+  }
+
+  .dingtalk-chat-head__meta {
+    display: none;
+  }
+
+  .dingtalk-chat-head__actions .segmented__btn {
+    padding: 4px 9px;
+  }
+
+  .chrome-lights {
+    gap: 5px;
+    padding-right: 8px;
+  }
+
+  .chrome-tab:not(.chrome-tab--active),
+  .chrome-newtab,
+  .chrome-actions svg:first-child {
+    display: none;
+  }
+
+  .chrome-toolbar {
+    gap: 8px;
+    padding: 0 8px 5px;
+  }
+
+  .chrome-url {
+    font-size: 10.5px;
+  }
+
+  .dingtalk-chat-head {
     padding: 9px 12px;
   }
 

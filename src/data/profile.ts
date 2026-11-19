@@ -4,13 +4,23 @@ export const PROFILE = {
   tagline: "把 Agent 与 RAG 从方案落成可用的产品。",
   intro:
     "既写 Agent 执行引擎与 RAG 检索链路，也把 AI 结果做成可用的前端交互。擅长把复杂的业务流程拆解成可执行的节点与工具，再交到真实用户手里。",
-  skills: [
-    "Agent 执行引擎",
-    "RAG 检索",
-    "LangGraph",
-    "TypeScript / React",
-    "Python / FastAPI",
-    "性能优化",
+  positioning: "从 Agent 引擎、RAG 检索到前端交互。",
+  strengths: [
+    {
+      index: "01",
+      title: "全链路交付",
+      detail: "Agent 引擎 / RAG / 前端，一人打通",
+    },
+    {
+      index: "02",
+      title: "把 AI 做成产品",
+      detail: "流式渲染 · 首屏 15s→2s · 50–60fps",
+    },
+    {
+      index: "03",
+      title: "复杂业务与协作",
+      detail: "Workflow 主 · LLM 辅；5–7 人团队",
+    },
   ],
   location: "中国 · 远程 / 现场",
   github: "https://github.com/Sunbridger",

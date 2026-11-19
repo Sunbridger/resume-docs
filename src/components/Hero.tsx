@@ -1,14 +1,58 @@
-import { PROFILE } from "../data/profile";
-import { TechChips } from "./TechChips";
+import { useRef, type PointerEvent } from "react";
+import { PROFILE, SKILL_GROUPS, type SkillGroup } from "../data/profile";
 
-const TRACE_ROWS = [
-  { label: "意图识别", value: "知识检索 · 0.93", status: "done" },
-  { label: "Query 改写", value: "扩展同义词 + 时间线索", status: "done" },
-  { label: "多路召回", value: "BM25 8 条 · 向量 8 条", status: "done" },
-  { label: "Rerank", value: "融合重排 top 5", status: "done" },
-  { label: "质量判定", value: "0.82 · 通过", status: "live" },
-  { label: "答案生成", value: "引用 3 条历史工单", status: "pending" },
-];
+const TILT_DEG = 9;
+
+function SkillCard({ group, index }: { group: SkillGroup; index: number }) {
+  const ref = useRef<HTMLElement>(null);
+
+  const reset = () => {
+    const el = ref.current;
+    if (!el) return;
+    el.style.removeProperty("--tilt-x");
+    el.style.removeProperty("--tilt-y");
+    el.style.removeProperty("--glare-x");
+    el.style.removeProperty("--glare-y");
+  };
+
+  const handleMove = (event: PointerEvent<HTMLElement>) => {
+    if (event.pointerType !== "mouse") return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const el = ref.current;
+    if (!el) return;
+
+    const rect = el.getBoundingClientRect();
+    const px = (event.clientX - rect.left) / rect.width - 0.5;
+    const py = (event.clientY - rect.top) / rect.height - 0.5;
+
+    el.style.setProperty("--tilt-x", `${(-py * TILT_DEG * 2).toFixed(2)}deg`);
+    el.style.setProperty("--tilt-y", `${(px * TILT_DEG * 2).toFixed(2)}deg`);
+    el.style.setProperty("--glare-x", `${((px + 0.5) * 100).toFixed(1)}%`);
+    el.style.setProperty("--glare-y", `${((py + 0.5) * 100).toFixed(1)}%`);
+  };
+
+  return (
+    <article
+      className="skill-tape"
+      ref={ref}
+      onPointerMove={handleMove}
+      onPointerLeave={reset}
+    >
+      <span className="skill-tape__meta">
+        <span className="skill-tape__index" aria-hidden="true">
+          {String(index + 1).padStart(2, "0")}
+        </span>
+        <span className="skill-tape__tag">{group.tag}</span>
+      </span>
+      <h3 className="skill-tape__title">{group.title}</h3>
+      <ul className="skill-tape__points">
+        {group.points.map((point) => (
+          <li key={point}>{point}</li>
+        ))}
+      </ul>
+    </article>
+  );
+}
 
 export function Hero() {
   return (
@@ -21,11 +65,43 @@ export function Hero() {
             AI 应用工程师 · 交互式作品集
           </p>
           <h1 className="hero__title">
-            让 Agent 的每一步
-            <br />
-            都可以被<span className="hero__title-accent">看见</span>。
+            全链路<span className="hero__title-accent"> AI 落地</span>。
           </h1>
-          <p className="hero__lead">{PROFILE.intro}</p>
+          <p className="hero__positioning">{PROFILE.positioning}</p>
+
+          <ul className="hero__strengths">
+            {PROFILE.strengths.map((item) => (
+              <li className="strength" key={item.index}>
+                <span className="strength__index" aria-hidden="true">
+                  {item.index}
+                </span>
+                <span className="strength__body">
+                  <span className="strength__title">{item.title}</span>
+                  <span className="strength__detail">{item.detail}</span>
+                </span>
+              </li>
+            ))}
+          </ul>
+
+          <div className="hero__skills" id="skills">
+            <p className="hero__skills-label">
+              <span className="hero__skills-title">专业技能</span>
+              <span className="mono">SKILLS</span>
+              <span className="hero__skills-count">
+                {String(SKILL_GROUPS.length).padStart(2, "0")} GROUPS
+              </span>
+              <span className="hero__skills-hint">移动鼠标 · 3D 卡片</span>
+            </p>
+
+            <ul className="skill-tapes">
+              {SKILL_GROUPS.map((group, index) => (
+                <li key={group.tag}>
+                  <SkillCard group={group} index={index} />
+                </li>
+              ))}
+            </ul>
+          </div>
+
           <div className="hero__actions">
             <a className="btn btn--primary" href="#ticket-agent">
               进入工单智能体 Demo
@@ -34,34 +110,10 @@ export function Hero() {
               查看风险巡检 Demo
             </a>
           </div>
-          <TechChips items={PROFILE.skills} tone="accent" />
-          <p className="hero__note">
-            两个 Demo 均为纯前端实现：检索、路由、调度与流式渲染真实运行，LLM 语义判断由规则模拟并显式标注。
-          </p>
-        </div>
 
-        <div className="hero__panel" aria-label="编排轨迹示意">
-          <div className="trace-card">
-            <div className="trace-card__head">
-              <span className="trace-card__title">Agent 编排</span>
-              <span className="live-dot" aria-hidden="true" />
-              <span className="trace-card__meta">Workflow 主 · LLM 辅</span>
-            </div>
-            <ol className="trace-card__list">
-              {TRACE_ROWS.map((row, i) => (
-                <li key={row.label} className={`trace-row trace-row--${row.status}`} style={{ animationDelay: `${i * 90}ms` }}>
-                  <span className={`trace-row__dot trace-row__dot--${row.status}`} aria-hidden="true" />
-                  <span className="trace-row__label">{row.label}</span>
-                  <span className="trace-row__value">{row.value}</span>
-                </li>
-              ))}
-            </ol>
-            <div className="trace-card__foot">
-              <span>search_history_tickets</span>
-              <span className="mono">RAG · retry ≤ 2</span>
-            </div>
-          </div>
-          <div className="hero__panel-badge">双角色 · 技术支持 / 研发</div>
+          <p className="hero__note">
+            两个 Demo 均为纯前端实现：检索与调度真实运行，LLM 判断由规则模拟。
+          </p>
         </div>
       </div>
     </section>
